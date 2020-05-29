@@ -1,10 +1,12 @@
 package tp3.unq;
 
+
 import java.time.LocalDate;
-import java.util.function.BooleanSupplier;
+
+import tp5.mascota.SerVivo;
 
 
-public class Persona {
+public class Persona implements SerVivo{
 	private String nombre;
 	private LocalDate fechaDeNacimiento;
 	
