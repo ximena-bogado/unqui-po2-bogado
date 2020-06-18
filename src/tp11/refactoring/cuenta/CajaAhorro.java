@@ -1,4 +1,4 @@
-package cuenta;
+package tp11.refactoring.cuenta;
 
 public class CajaAhorro extends CuentaBancaria{
 
@@ -6,13 +6,29 @@ public class CajaAhorro extends CuentaBancaria{
 		super(historialDeMovimientos, notificador, saldo);
 	}
 
+
 	@Override
-	public void extraer(Integer monto) {
-		if(this.saldo >= monto) {
-			this.saldo = saldo - monto;
-			this.historialDeMovimientos.registrarMovimiento("Extracción", monto);
-			this.notificador.notificarNuevoSaldoACliente(this);
-		}
+	protected void notificarNuevoSaldoACliente() {
+		this.notificador.notificarNuevoSaldoACliente(this);
+		
+	}
+
+	@Override
+	protected void registrarMovimiento(Integer monto) {
+		this.historialDeMovimientos.registrarMovimiento("Extracción", monto);
+		
+	}
+
+	@Override
+	protected void descontarMonto(Integer monto) {
+		this.saldo = saldo - monto;
+		
+	}
+
+	@Override
+	protected boolean puedeExtraer(Integer monto) {
+		
+		return this.saldo >= monto;
 	}
 	
 

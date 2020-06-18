@@ -1,4 +1,4 @@
-package cuenta;
+package tp11.refactoring.cuenta;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package automotor;
+package tp11.refactoring.automotor;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

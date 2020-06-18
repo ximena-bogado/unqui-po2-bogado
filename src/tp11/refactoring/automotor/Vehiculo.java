@@ -1,4 +1,4 @@
-package automotor;
+package tp11.refactoring.automotor;
 
 import java.time.LocalDate;
 
@@ -23,5 +23,10 @@ public class Vehiculo {
 
 	public String ciudadRadicacion() {
 		return ciudadRadicacion;
+	}
+	
+	public boolean realizaVtv(LocalDate fecha) {
+		return (!esVehiculoPolicial && fecha.minusYears(1).isAfter(fechaFabricacion)
+				&& ciudadRadicacion.equalsIgnoreCase("Buenos Aires"));
 	}
 }

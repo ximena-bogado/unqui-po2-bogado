@@ -1,4 +1,4 @@
-package cuenta;
+package tp11.refactoring.cuenta;
 
 public interface HistorialMovimientos {
 

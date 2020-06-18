@@ -1,9 +1,9 @@
-package cuenta;
+package tp11.refactoring.cuenta;
 
 public abstract class CuentaBancaria {
 	protected HistorialMovimientos historialDeMovimientos;
 	protected Notificador notificador;
-	protected int saldo;
+	protected Integer saldo;
 	
 	public CuentaBancaria(HistorialMovimientos historialDeMovimientos, Notificador notificador, Integer saldo) {
 		super();
@@ -16,5 +16,19 @@ public abstract class CuentaBancaria {
 		return saldo;
 	}
 	
-	public abstract void extraer(Integer monto);
+	public void extraer(Integer monto) {
+		if(this.puedeExtraer(monto)) {
+			this.descontarMonto(monto);
+			this.registrarMovimiento(monto);
+			this.notificarNuevoSaldoACliente();
+		}
+	}
+
+	protected abstract void notificarNuevoSaldoACliente();
+
+	protected abstract void registrarMovimiento(Integer monto);
+
+	protected abstract void descontarMonto(Integer monto);
+
+	protected abstract boolean puedeExtraer(Integer monto);
 }
