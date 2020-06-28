@@ -1,15 +1,15 @@
 package tp09.publicaciones;
 
-public class ReferenciaTipo extends Referencia {
+public class ReferenciaTipo extends ReferenciaNombre {
 
 	public ReferenciaTipo(String referencia) {
 		super(referencia);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	protected String getCampo(Articulo articulo) {
-		// TODO Auto-generated method stub
+		
 		return articulo.getTipo();
 	}
 

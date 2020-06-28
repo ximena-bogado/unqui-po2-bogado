@@ -1,25 +1,18 @@
 package tp09.publicaciones;
 
-public class ReferenciaPalabraClave extends Referencia {
+import java.util.List;
+
+public class ReferenciaPalabraClave extends ReferenciaLista {
 
 	public ReferenciaPalabraClave(String referencia) {
 		super(referencia);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Boolean chequear(Articulo articulo) {
-		Boolean resultado = false;
-		for(String palabraClave: articulo.getPalabrasClaves()) {
-			resultado |= this.chequearCampo(palabraClave);
-		}
-		
-		return resultado;
-	}
+
 
 	@Override
-	protected String getCampo(Articulo articulo) {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<String> getCampo(Articulo articulo) {
+		return articulo.getPalabrasClaves();
 	}
 
 }

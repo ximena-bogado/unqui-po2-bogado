@@ -3,9 +3,6 @@ package tp04.supermercado;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp04.supermercado.Producto;
-import tp04.supermercado.Supermercado;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SupermercadoTest {
@@ -20,6 +17,12 @@ public class SupermercadoTest {
 		detergente = new Producto("Detergente", 75d);
 		supermercado = new Supermercado("Lo de Tito", "Av Zubeldia 801");
 		
+	}
+	
+	@Test
+	public void testConstructor() {
+		assertEquals("Lo de Tito", supermercado.getNombreDelSupermercado());
+		assertEquals("Av Zubeldia 801", supermercado.getDireccion());
 	}
 	
 	@Test

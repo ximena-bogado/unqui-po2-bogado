@@ -8,18 +8,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import tp09.publicaciones.Articulo;
-import tp09.publicaciones.Referencia;
-import tp09.publicaciones.ReferenciaAutor;
-import tp09.publicaciones.ReferenciaEditorial;
-import tp09.publicaciones.ReferenciaFiliaciones;
-import tp09.publicaciones.ReferenciaPalabraClave;
-import tp09.publicaciones.ReferenciaTipo;
-import tp09.publicaciones.ReferenciaTitulo;
-
 class ReferenciaTest {
 
-	private Referencia referencia;
+	private IReferencia referencia;
+	private ConjuntoDeReferencias referenciaCompuesta;
 
 	@Test
 	void testVerificarTituloDaTrue() {
@@ -151,6 +143,40 @@ class ReferenciaTest {
 		when(articulo.getTipo()).thenReturn("general");
 		
 		assertFalse(referencia.chequear(articulo));
+	}
+	
+	@Test
+	void testVerificarReferenciaCompuestaDaTrue() {
+		referenciaCompuesta = new ConjuntoDeReferencias();
+		referencia = new ReferenciaEditorial("Bo");
+		IReferencia referencia2 = new ReferenciaTipo("general");
+		Articulo articulo = mock(Articulo.class);
+		
+		referenciaCompuesta.agregarReferencia(referencia);
+		referenciaCompuesta.agregarReferencia(referencia2);
+		
+		
+		when(articulo.getEditorial()).thenReturn("Bo");
+		when(articulo.getTipo()).thenReturn("general");
+		
+		
+		assertTrue(referenciaCompuesta.chequear(articulo));
+	}
+	
+	@Test
+	void testVerificarReferenciaCompuestaDaFalse() {
+		referenciaCompuesta = new ConjuntoDeReferencias();
+		referencia = new ReferenciaEditorial("JM");
+		IReferencia referencia2 = new ReferenciaTipo("general");
+		Articulo articulo = mock(Articulo.class);
+		
+		referenciaCompuesta.agregarReferencia(referencia);
+		referenciaCompuesta.agregarReferencia(referencia2);
+		
+		when(articulo.getTipo()).thenReturn("general");
+		when(articulo.getEditorial()).thenReturn("Bo");
+		
+		assertFalse(referenciaCompuesta.chequear(articulo));
 	}
 
 }

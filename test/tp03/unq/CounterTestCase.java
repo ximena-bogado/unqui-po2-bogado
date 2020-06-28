@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp03.unq.Counter;
-import tp03.unq.MultiOperador;
-
 class CounterTestCase {
 	
 	private Counter counter;
@@ -55,13 +52,6 @@ class CounterTestCase {
 		
 	}
 	
-	@Test
-	public void testTiposPrimitivos(){
-        System.out.println(counter.getNumeroSinDefinir());
-        Integer numeroSinDefinir = null;
-        System.out.println(numeroSinDefinir);
-		
-	}
 	
 	@Test
 	public void testMultioperador(){

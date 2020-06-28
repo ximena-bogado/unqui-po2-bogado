@@ -4,23 +4,18 @@ import java.util.ArrayList;
 
 public class Counter {
 	
-	private ArrayList<Integer> contador;
-	private Integer numeroSinDefinir;
+	private ArrayList<Integer> listaDeNumeros;
 	
 	public Counter() {
-		this.contador =  new ArrayList<Integer>();
+		this.listaDeNumeros =  new ArrayList<Integer>();
 	}
 	
 	public ArrayList<Integer> getContador() {
-		return contador;
-	}
-	
-	public Integer getNumeroSinDefinir() {
-		return numeroSinDefinir;
+		return listaDeNumeros;
 	}
 
 	public Integer cantidadDePares() {
-		ArrayList<Integer> array = this.contador;
+		ArrayList<Integer> array = this.listaDeNumeros;
 		Integer cantidadDePares = 0;
 		for (Integer i=0; i< array.size(); i++) {
 			cantidadDePares += this.devolverUnoSiEsPar(array.get(i));
@@ -30,7 +25,7 @@ public class Counter {
 
 
 	public Integer cantidadDeImpares() {
-		ArrayList<Integer> array = this.contador;
+		ArrayList<Integer> array = this.listaDeNumeros;
 		Integer cantidadDeImpares = 0;
 		for (Integer i=0; i< array.size(); i++) {
 			cantidadDeImpares += this.devolverUnoSiEsImpar(array.get(i));
@@ -40,7 +35,7 @@ public class Counter {
 
 	
 	public Integer cantidadDeMultiplosDe(Integer numero) {
-		ArrayList<Integer> array = this.contador;
+		ArrayList<Integer> array = this.listaDeNumeros;
 		Integer cantidadDeMultiplos = 0;
 		for (Integer i=0; i< array.size(); i++) {
 			cantidadDeMultiplos += this.devolverUnoSiEsMultiploDe(array.get(i),numero);
@@ -50,7 +45,7 @@ public class Counter {
 
 
 	public void addNumber(Integer i) {
-		this.contador.add(i);
+		this.listaDeNumeros.add(i);
 	}
 
 	private Integer devolverUnoSiEsMultiploDe(Integer integer, Integer numero) {

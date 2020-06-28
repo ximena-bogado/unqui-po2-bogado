@@ -1,25 +1,18 @@
 package tp09.publicaciones;
 
-public class ReferenciaFiliaciones extends Referencia {
+import java.util.List;
+
+public class ReferenciaFiliaciones extends ReferenciaLista {
 
 	public ReferenciaFiliaciones(String referencia) {
 		super(referencia);
-		// TODO Auto-generated constructor stub
-	}
 	
-	public Boolean chequear(Articulo articulo) {
-		Boolean resultado = false;
-		for(String filiacion: articulo.getFiliaciones()) {
-			resultado |= this.chequearCampo(filiacion);
-		}
-		
-		return resultado;
 	}
 
 	@Override
-	protected String getCampo(Articulo articulo) {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<String> getCampo(Articulo articulo) {
+		
+		return articulo.getFiliaciones();
 	}
 
 }

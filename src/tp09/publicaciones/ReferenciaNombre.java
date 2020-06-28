@@ -1,10 +1,10 @@
 package tp09.publicaciones;
 
-public abstract class Referencia {
+public abstract class ReferenciaNombre implements IReferencia{
 
 	private String referencia;
 	
-	public Referencia(String referencia) {
+	public ReferenciaNombre(String referencia) {
 		this.referencia = referencia;
 	}
 
@@ -16,10 +16,6 @@ public abstract class Referencia {
     protected Boolean chequearCampo(String campo) {
 		// TODO Auto-generated method stub
 		return campo.equals(referencia);
-	}
-	
-	public String getReferencia() {
-		return referencia;
 	}
 	
 	protected abstract String getCampo(Articulo articulo);

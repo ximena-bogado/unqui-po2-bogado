@@ -1,21 +1,9 @@
 package tp08.poker;
 
-public class Valor {
+public interface Valor {
 
-	public Integer valorNumerico;
+	public Boolean esMayor(Valor valor);
 	
-	public Valor(Integer i) {
-		this.valorNumerico = i;
-	}
-	
-	public Boolean esMayor(Valor valor) {
-		
-		return this.valorNumerico > valor.valorNumerico;
-	}
-
-	public Integer getValorNumerico() {
-		
-		return valorNumerico;
-	}
+	public Integer getValorNumerico() ;
 
 }

@@ -4,19 +4,23 @@ package tp08.poker;
 public class Carta {
 
 	private Valor valor;
-	private String tipo;
+	private String palo;
 
-	public Carta(Valor valor, String tipo) {
+	public Carta(Valor valor, String palo) {
 		this.valor = valor;
-		this.tipo = tipo;
+		this.palo = palo;
 	}
 
 	public Valor getValor() {
 		return valor;
 	}
+	
+	public Integer getValorNumerico() {
+		return valor.getValorNumerico();
+	}
 
-	public String getTipo() {
-		return tipo;
+	public String getPalo() {
+		return palo;
 	}
 
 	public Boolean esSuperior(Carta carta) {
@@ -26,7 +30,7 @@ public class Carta {
 
 	public Boolean mismoPalo(Carta carta) {
 		
-		return this.getTipo().equals(carta.getTipo());
+		return this.getPalo().equals(carta.getPalo());
 	}
 
 }

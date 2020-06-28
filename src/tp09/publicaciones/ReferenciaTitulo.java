@@ -1,6 +1,6 @@
 package tp09.publicaciones;
 
-public class ReferenciaTitulo extends Referencia {
+public class ReferenciaTitulo extends ReferenciaNombre {
 
 
 	public ReferenciaTitulo(String titulo) {

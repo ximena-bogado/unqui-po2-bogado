@@ -5,27 +5,22 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp08.poker.Ace;
-import tp08.poker.Carta;
-import tp08.poker.King;
-import tp08.poker.Numerico;
-
 class CartaTest {
 	
 	private Carta cartaDosDePicas;
 	private Carta cartaAceDePicas;
 	private Carta cartaKingDeDiamantes;
-	private Ace ace;
-	private King king;
-	private Numerico dos;
+	private Valor ace;
+	private Valor king;
+	private Valor dos;
 	
 
 	@BeforeEach
 	void testSetUp() {
 		//SetUp
-		ace = new Ace();
-		king = new King();
-		dos = new Numerico(2);
+		ace = ValorTextual.ACE;
+		king = ValorTextual.KING;
+		dos = new ValorNumerico(2);
 		
 		cartaDosDePicas = new Carta(dos, "Picas");
 		cartaAceDePicas = new Carta(ace, "Picas");
@@ -38,8 +33,8 @@ class CartaTest {
 		assertEquals(dos, cartaDosDePicas.getValor());
 		assertEquals(ace, cartaAceDePicas.getValor());
 		
-		assertEquals("Picas", cartaDosDePicas.getTipo());
-		assertEquals("Diamantes", cartaKingDeDiamantes.getTipo());
+		assertEquals("Picas", cartaDosDePicas.getPalo());
+		assertEquals("Diamantes", cartaKingDeDiamantes.getPalo());
 		
 	}
 	

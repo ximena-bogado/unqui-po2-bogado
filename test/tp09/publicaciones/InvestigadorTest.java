@@ -2,17 +2,10 @@ package tp09.publicaciones;
 
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import tp09.publicaciones.Articulo;
-import tp09.publicaciones.Investigador;
-import tp09.publicaciones.Referencia;
-import tp09.publicaciones.SistemaDePublicaciones;
-import tp09.publicaciones.SistemaDeReferencia;
 
 class InvestigadorTest {
 	
@@ -38,19 +31,23 @@ class InvestigadorTest {
 	}
 	
 	@Test
-	void testInvestigadorSeSuscribeASistemaDeReferenciaConDosReferencias() {
-		Referencia referencia1 = mock(Referencia.class);
-		Referencia referencia2 = mock(Referencia.class);
+	void testInvestigadorSeSuscribeAUnSistemaDePublicacionesConUnaReferencia() {
+		IReferencia referencia = mock(IReferencia.class);
 		
-		List<Referencia> listaDeReferencias = new ArrayList<Referencia>();
-		listaDeReferencias.add(referencia1);
-		listaDeReferencias.add(referencia2);
+		investigador.suscribirse(referencia, sistemaDePublicaciones);
+		
+		verify(sistemaDePublicaciones).agregarSuscriptor(investigador);
+		
+		assertEquals(1, investigador.getReferencias().size());
+	}
 	
-		SistemaDeReferencia sistemaDeReferencias = mock(SistemaDeReferencia.class);
+	@Test
+	void testInvestigadorRecibeUnArticuloYAhoraTiene1Articulo() {
+		Articulo articulo = mock(Articulo.class);
 		
-		investigador.suscribirse(listaDeReferencias, sistemaDeReferencias);
+		investigador.recibirArticulo(articulo);
 		
-		verify(sistemaDeReferencias).agregarReferencias(listaDeReferencias, investigador);
+		assertEquals(1, investigador.getArticulos().size());
 	}
 	
 

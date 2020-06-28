@@ -1,14 +1,27 @@
 package tp08.poker;
 
+import java.util.List;
+
 public class Nada extends Jugada{
 
 
-
-
 	@Override
-	public Boolean esJugada(Integer maximo, Boolean palosIguales) {
+	protected Boolean leGanaATipoDeJugada(Jugada tipoDeJugada) {
+		
+		return false;
+	}
+	
+    @Override
+    protected boolean esJugada(List<Carta> listaDeCartas) {
 		
 		return true;
+	    
+	}
+    
+    @Override
+	protected String tipoDeJugada() {
+		
+		return "Nada";
 	}
 
 	@Override
@@ -18,9 +31,10 @@ public class Nada extends Jugada{
 	}
 
 	@Override
-	protected Boolean leGanaATipoDeJugada(Jugada tipoDeJugada) {
-		
-		return false;
+	public Integer getValorDeJugada() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
 
 }

@@ -28,10 +28,6 @@ public class Supermercado {
 		return direccion;
 	}
 
-	public List<Producto> getProductos() {
-		return productos;
-	}
-
 	public Integer getCantidadDeProductos() {
 		return productos.size();
 	}

@@ -1,15 +1,14 @@
 package tp09.publicaciones;
 
-public class ReferenciaEditorial extends Referencia {
+public class ReferenciaEditorial extends ReferenciaNombre {
 
 	public ReferenciaEditorial(String referencia) {
 		super(referencia);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected String getCampo(Articulo articulo) {
-		// TODO Auto-generated method stub
+		
 		return articulo.getEditorial();
 	}
 

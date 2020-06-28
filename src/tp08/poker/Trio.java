@@ -1,16 +1,26 @@
 package tp08.poker;
 
+import java.util.List;
+
 public class Trio extends Jugada{
 
-	
-
-	public Trio() {
-	}
 
 	@Override
-	public Boolean esJugada(Integer maximo, Boolean palosIguales) {
+	protected Boolean leGanaATipoDeJugada(Jugada tipoDeJugada) {
+		return tipoDeJugada.getClass() == Nada.class;
+	}
+	
+    @Override
+    protected boolean esJugada(List<Carta> listaDeCartas) {
 		
-		return maximo == 3;
+		return cantidadDeCartasDeDiferenteValor(listaDeCartas) == 3;
+	    
+	}
+    
+    @Override
+	protected String tipoDeJugada() {
+		
+		return "Trio";
 	}
 
 	@Override
@@ -20,12 +30,9 @@ public class Trio extends Jugada{
 	}
 
 	@Override
-	protected Boolean leGanaATipoDeJugada(Jugada tipoDeJugada) {
-		if (tipoDeJugada.getClass() == Nada.class) {
-			return true;
-		}else {
-			return false;
-		}
+	public Integer getValorDeJugada() {
+		
+		return 0;
 	}
 
 

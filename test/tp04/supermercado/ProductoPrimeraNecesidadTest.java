@@ -3,8 +3,6 @@ package tp04.supermercado;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp04.supermercado.ProductoPrimeraNecesidad;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductoPrimeraNecesidadTest {

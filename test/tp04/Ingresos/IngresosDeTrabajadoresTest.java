@@ -7,9 +7,6 @@ import java.time.Month;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp04.Ingresos.Ingreso;
-import tp04.Ingresos.IngresoPorHorasExtras;
-import tp04.Ingresos.Trabajador;
 
 class IngresosDeTrabajadoresTest {
 	
@@ -29,6 +26,13 @@ class IngresosDeTrabajadoresTest {
 	
 	@Test
 	public void testConstructor() {
+		assertEquals("Hola",ingreso1.getConcepto());
+		assertEquals(Month.MAY,ingreso1.getMesDePercepcion());
+		assertEquals(4,ingresoPorHoras.getCantidadDeHorasExtras());
+	}
+	
+	@Test
+	public void testImpuestos() {
 		Double impuestoAPagar = empleado.getImpuestoAPagar();
 		Integer montoImponible = empleado.getMontoImponible();
 		Integer totalPercibido = empleado.getTotalPercibido();
