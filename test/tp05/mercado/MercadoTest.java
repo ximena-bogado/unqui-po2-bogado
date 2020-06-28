@@ -7,16 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp05.mercado.Agencia;
-import tp05.mercado.AgenciaRecaudadora;
-import tp05.mercado.Caja;
-import tp05.mercado.Cliente;
-import tp05.mercado.Factura;
-import tp05.mercado.FacturaDeImpuestos;
-import tp05.mercado.FacturaDeServicio;
-import tp05.mercado.Producto;
-import tp05.mercado.ProductoDeCooperativa;
-import tp05.mercado.ProductoDeEmpresaTradicional;
 
 class MercadoTest {
 	

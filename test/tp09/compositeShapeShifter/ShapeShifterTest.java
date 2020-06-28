@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import tp09.compositeShapeShifter.IShapeShifter;
-import tp09.compositeShapeShifter.Simple;
 
 class ShapeShifterTest {
 

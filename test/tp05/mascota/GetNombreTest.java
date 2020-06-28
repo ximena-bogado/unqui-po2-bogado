@@ -10,8 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tp03.unq.Persona;
-import tp05.mascota.Mascota;
-import tp05.mascota.SerVivo;
 
 class GetNombreTest {
 

@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp03.equipo.EquipoDeTrabajo;
-import tp03.equipo.Persona;
-
 class EquipoTestCase {
 
 	private EquipoDeTrabajo equipoDeTrabajo;

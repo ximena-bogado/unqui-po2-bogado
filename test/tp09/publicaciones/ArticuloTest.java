@@ -9,8 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp09.publicaciones.Articulo;
-
 class ArticuloTest {
 
 	private Articulo articulo;

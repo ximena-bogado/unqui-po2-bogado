@@ -2,18 +2,17 @@ package tp09.concurso;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp09.concurso.Participante;
-import tp09.concurso.Servidor;
+import tp09.concurso.participante.Participante;
+import tp09.concurso.partida.Partida;
 
 class PartidaTest {
 
-	private Servidor servidor;
+	private Partida servidor;
 	private Participante participante1;
 	private Participante participante2;
 	private Participante participante3;
@@ -23,17 +22,19 @@ class PartidaTest {
 	@BeforeEach
 	void testSetUp() {
 		
-		HashMap<String, String> preguntasYRespuestas = new HashMap<String, String>();
-		preguntasYRespuestas.put("a", "c");
-		preguntasYRespuestas.put("b", "d");
-		
 		participante1 = mock(Participante.class);
 		participante2 = mock(Participante.class);
 		participante3 = mock(Participante.class);
 		participante4 = mock(Participante.class);
 		participante5 = mock(Participante.class);
 		
-		servidor = new Servidor(preguntasYRespuestas);
+		servidor = new Partida();
+		
+		servidor.agregarPregunta("a", "c");
+		servidor.agregarPregunta("b", "d");
+		servidor.agregarPregunta("c", "a");
+		servidor.agregarPregunta("d", "e");
+		servidor.agregarPregunta("e", "f");
 	}
 
 	@Test
@@ -65,6 +66,34 @@ class PartidaTest {
 	}
 	
 	@Test
+	void testLaPartidaSoloPuedeAgregarCincoPreguntas() {
+		
+		servidor.agregarPregunta("z", "x");
+		
+		assertEquals(5, servidor.getPreguntas().size());
+	}
+	
+	@Test
+	void testLaNoComenzoYNoSePuedenVerificarPreguntas() {
+		servidor.agregarParticipante(participante1);
+		
+		servidor.verificarRespuesta(participante1, "a", "c");
+		
+		verify(participante1, never()).recibirNotificacionDeRespuesta("Correcta");
+	}
+	
+	@Test
+	void testLaPartidaNoPuedeComenzarSiNoEstanLos5Participantes() {
+		servidor.agregarParticipante(participante1);
+		
+		List<String> listaDePreguntas = servidor.getPreguntas();
+		servidor.iniciarPartida();
+		
+		verify(participante1, never()).recibirPreguntas(listaDePreguntas);
+		verify(participante1, never()).recibirNotificacion("Partida Iniciada");
+	}
+	
+	@Test
 	void testComienzaLaPartidaSeNotificaATodosLosParticipantesYSeEntregaLaListaDePreguntas() {
 		
 		
@@ -75,11 +104,19 @@ class PartidaTest {
 		servidor.agregarParticipante(participante5);
 		
 		servidor.iniciarPartida();
+		servidor.iniciarPartida();
 		List<String> listaDePreguntas = servidor.getPreguntas();
 		
-		verify(participante1).recibirPreguntas(listaDePreguntas);
-		verify(participante1).recibirNotificacion("Partida Iniciada");
-		verify(participante1).comenzarPartida();
+		verify(participante1, times(1)).recibirPreguntas(listaDePreguntas);
+		verify(participante1, times(1)).recibirNotificacion("Partida Iniciada");
+		verify(participante2, times(1)).recibirPreguntas(listaDePreguntas);
+		verify(participante2, times(1)).recibirNotificacion("Partida Iniciada");
+		verify(participante3, times(1)).recibirPreguntas(listaDePreguntas);
+		verify(participante3, times(1)).recibirNotificacion("Partida Iniciada");
+		verify(participante4, times(1)).recibirPreguntas(listaDePreguntas);
+		verify(participante4, times(1)).recibirNotificacion("Partida Iniciada");
+		verify(participante5, times(1)).recibirPreguntas(listaDePreguntas);
+		verify(participante5, times(1)).recibirNotificacion("Partida Iniciada");
 	}
 	
 	@Test
@@ -136,9 +173,11 @@ class PartidaTest {
 		servidor.iniciarPartida();
 		servidor.verificarRespuesta(participante1, "a", "c");
 		servidor.verificarRespuesta(participante1, "b", "d");
+		servidor.verificarRespuesta(participante1, "c", "a");
+		servidor.verificarRespuesta(participante1, "d", "e");
+		servidor.verificarRespuesta(participante1, "e", "f");
 		
-		assertEquals(2, servidor.puntajeDeParticipante(participante1));
-		verify(participante1).finalizarPartida();
+		assertEquals(5, servidor.puntajeDeParticipante(participante1));
 		verify(participante1).recibirNotificacion("Ximena gano la partida");
 		verify(participante2).recibirNotificacion("Ximena gano la partida");
 		verify(participante3).recibirNotificacion("Ximena gano la partida");

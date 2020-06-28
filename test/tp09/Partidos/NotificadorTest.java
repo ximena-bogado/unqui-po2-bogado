@@ -9,12 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp09.Partidos.Notificador;
-import tp09.Partidos.NotificadorPorContrincante;
-import tp09.Partidos.NotificadorPorDeporte;
-import tp09.Partidos.Partido;
-import tp09.Partidos.Suscriptor;
-
 class NotificadorTest {
 
 	private Notificador notificadorPorDeporte;

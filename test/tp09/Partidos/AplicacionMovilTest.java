@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import tp09.Partidos.AplicacionMovil;
-
 class AplicacionMovilTest {
 
 	private AplicacionMovil aplicacion;

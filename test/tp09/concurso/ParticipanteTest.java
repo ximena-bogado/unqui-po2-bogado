@@ -9,18 +9,24 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp09.concurso.Participante;
-import tp09.concurso.Servidor;
+import tp09.concurso.participante.Participante;
+import tp09.concurso.partida.Partida;
 
 class ParticipanteTest {
 
-	private Servidor servidor;
+	private Partida servidor;
 	private Participante jugador;
 
 	@BeforeEach
 	void testSetUp() {
 		jugador = new Participante("Ximena");
-		servidor = mock(Servidor.class);
+		servidor = mock(Partida.class);
+	}
+	
+	@Test
+	void testConstructor() {
+		
+		assertEquals("Ximena", jugador.getNombre());
 	}
 	
 	@Test
@@ -28,7 +34,6 @@ class ParticipanteTest {
 		
 		jugador.unirseAPartida(servidor);
 		
-		assertEquals(servidor, jugador.getServidor());
 		verify(servidor).agregarParticipante(jugador);
 	}
 	
@@ -46,7 +51,7 @@ class ParticipanteTest {
 	void testUnJugadorEnviaUnaRespuestayElServidorlaVerifica() {
 		
 		jugador.unirseAPartida(servidor);
-		jugador.comenzarPartida();
+		jugador.recibirNotificacion("Partida Iniciada");
 		List<String> preguntas = new ArrayList<String>();
 		preguntas.add("a");
 		preguntas.add("b");
@@ -60,8 +65,8 @@ class ParticipanteTest {
 	void testUnJugadorEnviaUnaRespuestaPeroElJuegoYaFinalizo(){
 		
 		jugador.unirseAPartida(servidor);
-		jugador.comenzarPartida();
-		jugador.finalizarPartida();
+		jugador.recibirNotificacion("Partida Iniciada");
+		jugador.recibirNotificacion("ximena gano la partida");
 		jugador.enviarRespuesta("c");
 		
 		
@@ -72,7 +77,7 @@ class ParticipanteTest {
 	void testUnJugadorEnviaDosRespuestaAlJuegoDeDiferentesPreguntas() {
 		
 		jugador.unirseAPartida(servidor);
-		jugador.comenzarPartida();
+		jugador.recibirNotificacion("Partida Iniciada");
 		List<String> preguntas = new ArrayList<String>();
 		preguntas.add("a");
 		preguntas.add("b");
@@ -89,7 +94,7 @@ class ParticipanteTest {
 	void testUnJugadorEnviaDosRespuestaAlJuegoDeLaMismaPregunta() {
 		
 		jugador.unirseAPartida(servidor);
-		jugador.comenzarPartida();
+		jugador.recibirNotificacion("Partida Iniciada");
 		List<String> preguntas = new ArrayList<String>();
 		preguntas.add("a");
 		preguntas.add("b");

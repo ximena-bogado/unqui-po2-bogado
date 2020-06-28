@@ -1,15 +1,9 @@
 package tp03.unq;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import tp03.unq.Cuadrado;
-import tp03.unq.Point;
-import tp03.unq.Rectangulo;
 
 class FigurasGeometricasTestCase {
 

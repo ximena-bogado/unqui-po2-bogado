@@ -9,13 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp07.wikipedia.Filtro;
-import tp07.wikipedia.FiltroLinkEnComun;
-import tp07.wikipedia.FiltroMismaLetraInicial;
-import tp07.wikipedia.FiltroPropiedadEnComun;
-import tp07.wikipedia.WikipediaPage;
-import tp07.wikipedia.WikipediaPageC;
-
 class FiltroTest {
 	
 	private WikipediaPage page1;

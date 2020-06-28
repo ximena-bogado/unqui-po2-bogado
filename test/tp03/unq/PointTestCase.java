@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tp03.unq.Point;
-
 class PointTestCase {
 	
 	private Point punto;

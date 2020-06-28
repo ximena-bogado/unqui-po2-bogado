@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import tp09.Partidos.Servidor;
-
 class ServidorTest {
 
 	private Servidor servidor;
