@@ -5,26 +5,23 @@ import java.util.List;
 
 public class AplicacionMovil implements Suscriptor{
 
-	private List<String> suscripciones;
+	private List<String> resultados;
 
 	public AplicacionMovil() {
-		this.suscripciones = new ArrayList<String>();
+		this.resultados = new ArrayList<String>();
+	}
+	
+	public List<String> getResultados() {
+		return resultados;
 	}
 
 	@Override
 	public void recibirInformacion(Partido partido) {
-		
-		
+		resultados.add(partido.getResultado());
 	}
 
-	@Override
-	public List<String> getSuscripciones() {
-		
-		return suscripciones;
-	}
-
-	public void suscribirse(String suscripcion) {
-		this.suscripciones.add(suscripcion);
+	public void suscribirse(Aplicacion notificador, String interes) {
+		notificador.agregar(this, interes);
 		
 	}
 

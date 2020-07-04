@@ -1,30 +1,29 @@
 package tp09.Partidos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Servidor implements Suscriptor{
 
-	private List<String> suscripciones;
+	private Set<Partido> partidos;
+
 
 	public Servidor() {
-		this.suscripciones = new ArrayList<String>();
+		this.partidos = new HashSet<Partido>();
+	}
+
+	public Set<Partido> getPartidos() {
+		return partidos;
 	}
 
 	@Override
 	public void recibirInformacion(Partido partido) {
-		
+		partidos.add(partido);
 	}
 
-	@Override
-	public List<String> getSuscripciones() {
-		
-		return suscripciones;
-	}
+	public void suscribirse(Aplicacion notificador, String interes) {
+	    notificador.agregar(this, interes);
 
-	public void suscribirse(String info) {
-	    this.suscripciones.add(info);
-		;
 	}
 
 }

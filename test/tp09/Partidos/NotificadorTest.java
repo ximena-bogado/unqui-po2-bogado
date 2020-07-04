@@ -5,38 +5,36 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class NotificadorTest {
 
-	private Notificador notificadorPorDeporte;
-	private Notificador notificadorPorContrincante;
+	private Aplicacion notificador;
 
 	@BeforeEach
 	void testSetUp() {
-		notificadorPorDeporte = new NotificadorPorDeporte();
-		notificadorPorContrincante = new NotificadorPorContrincante();
-	}
-	
-	@Test
-	void testNoSeAgregaSuscriptoresYLaCantidadDeSuscriptoresEsCero() {
-		
-		
-		List<Suscriptor> listaDeSuscriptores = notificadorPorDeporte.getSuscriptores();
-		
-		assertEquals(0,listaDeSuscriptores.size());
+		notificador = new Aplicacion();
 	}
 	
 	@Test
 	void testSeAgregaUnSuscriptorYLaCantidadDeSuscriptoresEsUno() {
 		Suscriptor suscriptor = mock(Suscriptor.class);
 		
-		notificadorPorDeporte.agregar(suscriptor);
-		List<Suscriptor> listaDeSuscriptores = notificadorPorDeporte.getSuscriptores();
+		notificador.agregar(suscriptor, "Tenis");
 		
-		assertEquals(1,listaDeSuscriptores.size());
+		assertEquals(1,notificador.getSuscriptores().size());
+	}
+	
+	@Test
+	void testSeAgreganDosSuscricionesDelMismoSuscriptorYLaCantidadDeSuscriptoresEsUno() {
+		Suscriptor suscriptor = mock(Suscriptor.class);
+		
+		notificador.agregar(suscriptor, "Tenis");
+		notificador.agregar(suscriptor, "Nadal");
+		
+		assertEquals(1,notificador.getSuscriptores().size());
+		assertEquals(2,notificador.getSuscripcion(suscriptor).size());
 	}
 	
 	@Test
@@ -46,13 +44,9 @@ class NotificadorTest {
 		Partido partido = mock(Partido.class);
 		when(partido.getDeporte()).thenReturn("Tenis");
 		
-		notificadorPorDeporte.agregar(servidor);
-		notificadorPorDeporte.agregar(aplicacionMovil);
-		List<String> suscripciones = new ArrayList<String>();
-		suscripciones.add("Tenis");
-		when(servidor.getSuscripciones()).thenReturn(suscripciones);
-		when(aplicacionMovil.getSuscripciones()).thenReturn(suscripciones);
-		notificadorPorDeporte.notificar(partido);
+		notificador.agregar(servidor, "Tenis");
+		notificador.agregar(aplicacionMovil, "Tenis");
+		notificador.agregarPartido(partido);
 		
 		verify(servidor).recibirInformacion(partido);
 		verify(aplicacionMovil).recibirInformacion(partido);
@@ -65,15 +59,9 @@ class NotificadorTest {
 		Partido partido = mock(Partido.class);
 		when(partido.getDeporte()).thenReturn("Tenis");
 		
-		notificadorPorDeporte.agregar(servidor);
-		notificadorPorDeporte.agregar(aplicacionMovil);
-		List<String> suscripciones = new ArrayList<String>();
-		suscripciones.add("Tenis");
-		List<String> suscripciones2 = new ArrayList<String>();
-		suscripciones2.add("Futbol");
-		when(servidor.getSuscripciones()).thenReturn(suscripciones);
-		when(aplicacionMovil.getSuscripciones()).thenReturn(suscripciones2);
-		notificadorPorDeporte.notificar(partido);
+		notificador.agregar(servidor, "Tenis");
+		notificador.agregar(aplicacionMovil, "Futbol");
+		notificador.agregarPartido(partido);
 		
 		verify(servidor).recibirInformacion(partido);
 		verify(aplicacionMovil, never()).recibirInformacion(partido);
@@ -90,16 +78,9 @@ class NotificadorTest {
 		when(partido.getDeporte()).thenReturn("Tenis");
 		when(partido.getContrincantes()).thenReturn(listaDeContrincantes);
 		
-		notificadorPorDeporte.agregar(servidor);
-		notificadorPorContrincante.agregar(aplicacionMovil);
-		List<String> suscripciones = new ArrayList<String>();
-		suscripciones.add("Tenis");
-		List<String> suscripciones2 = new ArrayList<String>();
-		suscripciones2.add("Nadal");
-		when(servidor.getSuscripciones()).thenReturn(suscripciones);
-		when(aplicacionMovil.getSuscripciones()).thenReturn(suscripciones2);
-		notificadorPorDeporte.notificar(partido);
-		notificadorPorContrincante.notificar(partido);
+		notificador.agregar(servidor, "Tenis");
+		notificador.agregar(aplicacionMovil, "Nadal");
+		notificador.agregarPartido(partido);
 		
 		verify(servidor).recibirInformacion(partido);
 		verify(aplicacionMovil).recibirInformacion(partido);
@@ -116,16 +97,9 @@ class NotificadorTest {
 		when(partido.getDeporte()).thenReturn("Tenis");
 		when(partido.getContrincantes()).thenReturn(listaDeContrincantes);
 		
-		notificadorPorDeporte.agregar(servidor);
-		notificadorPorContrincante.agregar(aplicacionMovil);
-		List<String> suscripciones = new ArrayList<String>();
-		suscripciones.add("Tenis");
-		List<String> suscripciones2 = new ArrayList<String>();
-		suscripciones2.add("Nadal");
-		when(servidor.getSuscripciones()).thenReturn(suscripciones);
-		when(aplicacionMovil.getSuscripciones()).thenReturn(suscripciones2);
-		notificadorPorDeporte.notificar(partido);
-		notificadorPorContrincante.notificar(partido);
+		notificador.agregar(servidor, "Tenis");
+		notificador.agregar(aplicacionMovil, "Nadal");
+		notificador.agregarPartido(partido);
 		
 		verify(servidor).recibirInformacion(partido);
 		verify(aplicacionMovil, never()).recibirInformacion(partido);

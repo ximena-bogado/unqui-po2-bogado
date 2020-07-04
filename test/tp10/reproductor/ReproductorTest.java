@@ -1,6 +1,7 @@
 package tp10.reproductor;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.io.IOException;
 
@@ -9,98 +10,85 @@ import org.junit.jupiter.api.Test;
 
 class ReproductorTest {
 	
-	private Song cancion;
+	private Reproductor cancion;
+	private Song song;
 
 	@BeforeEach
 	void testSetUp() {
-		cancion = new Song();
+		cancion = new Reproductor();
+		song = mock(Song.class);
 	}
 
 	@Test
 	void testSePonePlayLaCancionYSeReproducePorqueEstaEnModoDeSeleccion() throws IOException {
-		cancion.play();
+		cancion.play(song);
 		
-		assertEquals(EstadoEnReproduccion.class, cancion.getEstado());
+		assertEquals("En Reproduccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePonePlayLaCancionYSeGeneraUnErrorPorqueEstaEnModoDeReproduccion() throws IOException {
-		cancion.play();
-		try {
-			cancion.play();
-			fail("Se esperaba una excepcion");
-		}catch(IOException e) {
-			assertEquals("accion incorrecta", e.getMessage());
-		}
+		cancion.play(song);
 		
-		assertEquals(EstadoEnReproduccion.class, cancion.getEstado());
+		assertThrows(Exception.class, () -> cancion.play(song));
+		assertEquals("En Reproduccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePonePlayLaCancionYSeGeneraUnErrorPorqueEstaEnModoPausada() throws IOException {
-		cancion.play();
+		cancion.play(song);
 		cancion.pause();
-		try {
-			cancion.play();
-			fail("Se esperaba una excepcion");
-		}catch(IOException e) {
-			assertEquals("accion incorrecta", e.getMessage());
-		}
 		
-		assertEquals(EstadoPausada.class, cancion.getEstado());
+		assertThrows(Exception.class, () -> cancion.play(song));
+		assertEquals("En Pausa", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePonePausaLaCancionYSeQuedaPausadaPorqueEstabaEnModoReproduccion() throws IOException {
-		cancion.play();
+		cancion.play(song);
 		cancion.pause();
 		
-		assertEquals(EstadoPausada.class, cancion.getEstado());
+		assertEquals("En Pausa", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePonePausaLaCancionYSeReproducePorqueEstabaEnModoPausada() throws IOException {
-		cancion.play();
+		cancion.play(song);
 		cancion.pause();
 		cancion.pause();
 		
-		assertEquals(EstadoEnReproduccion.class, cancion.getEstado());
+		assertEquals("En Reproduccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePonePausaLaCancionYSeGeneraUnErrorPorqueEstabaEnModoDeSeleccion() {
-		try {
-			cancion.pause();
-			fail("Se esperaba una excepcion");
-		}catch(IOException e) {
-			assertEquals("accion incorrecta", e.getMessage());
-		}
-		
-		assertEquals(EstadoSeleccion.class, cancion.getEstado());
+
+		assertThrows(Exception.class, () -> cancion.pause());
+		assertEquals("En Seleccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePoneStopLaCancionEstandoEnModoReproduccionYSePasaAModoSeleccion() throws IOException {
-        cancion.play();
+        cancion.play(song);
 		cancion.stop();
 		
-		assertEquals(EstadoSeleccion.class, cancion.getEstado());
+		assertEquals("En Seleccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePoneStopLaCancionEstandoEnModoPausadaYSePasaAModoSeleccion() throws IOException {
-		cancion.play();
+		cancion.play(song);
 		cancion.pause();
 		cancion.stop();
 		
-		assertEquals(EstadoSeleccion.class, cancion.getEstado());
+		assertEquals("En Seleccion", cancion.getEstado());
 	}
 	
 	@Test
 	void testSePoneStopLaCancionEstandoEnModoSeleccionYNoPasaNada() {
          cancion.stop();
 		
-		assertEquals(EstadoSeleccion.class, cancion.getEstado());
+		assertEquals("En Seleccion", cancion.getEstado());
 	}
 
 }
